@@ -4,75 +4,31 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DecisionTree<E> extends BinaryTree<String>{
-
-    /** The value at this node */
-    private String data;
-
-    /** Left child of this node */
-    private DecisionTree<String> left;
-
-    /** Right child of this node */
-    private DecisionTree<String> right;
+public class DecisionTree<E> extends BinaryTree<E>{
 
     /** This constructor creates a leaf node */
-    public DecisionTree(String data){
+    public DecisionTree(E data){
         super(data);
     }
 
     /** This constructor creates a branch node */
-    public DecisionTree(String data, DecisionTree<String> left, DecisionTree<String> right){
+    public DecisionTree(E data, DecisionTree<E> left, DecisionTree<E> right){
         super(data, left, right);
     }
 
     /** This constructor creates a deep copy of the entire tree structure */ 
-    public DecisionTree(DecisionTree<String> tree){
+    public DecisionTree(DecisionTree<E> tree){
         super(tree);
-    }
-
-    /** Accessor for node data */
-    public String getData() {
-        return data;
-    }
-
-    /** Accessor for left child */
-    public DecisionTree<String> getLeft() {
-        return left;
-    }
-
-    /** Accessor for right child */
-    public DecisionTree<String> getRight() {
-        return right;
-    }
-
-    /** Manipulator for node data */
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    /** Manipulator for left child */
-    public void setLeft(DecisionTree<String> left) {
-        this.left = left;
-    }
-
-    /** Manipulator for right child */
-    public void setRight(DecisionTree<String> right) {
-        this.right = right;
-    }
-
-    /** Determines whether a tree is empty */
-    public static boolean isEmpty(DecisionTree node) {
-        return (node == null);
     }
 
     public static DecisionTree<String> followPath(DecisionTree<String> node, String input){
         DecisionTree<String> returnNode = node;
         for(int i = 0; i < input.length(); i++){
             if (input.charAt(i) == 'Y'){
-                returnNode = returnNode.getLeft();
+                returnNode = (DecisionTree<String>) returnNode.getLeft();
             }
             else{
-                returnNode = returnNode.getRight();
+                returnNode = (DecisionTree<String>) returnNode.getRight();
             }
         }
         return returnNode;
@@ -90,21 +46,23 @@ public class DecisionTree<E> extends BinaryTree<String>{
         while (file.hasNextLine()){
             inputLine.add(file.nextLine());
         }
-        DecisionTree<String> initialTree = new DecisionTree<>("");
-        initialTree.setData(inputLine.get(0));
+        DecisionTree<String> initialTree = new DecisionTree<>(inputLine.get(0),null,null);
         for(int i = 1; i < inputLine.size(); i++){
-            String[] storage = inputLine.get(i).split(" ");
+            String[] storage = inputLine.get(i).split(" ",2);
             String temp = storage[0];
-        //     //for (int j = 2; j < temp.length(); j++){
-        // if (temp.charAt(1) == 'Y'){
-        //     initialTree.setLeft(new DecisionTree<>(storage[1]));;
-        // }
-        // else{
-        //     initialTree.setRight(new DecisionTree<>(storage[1]));
-        // }
-        //     //}
-        //     initialTree.setLeft(new DecisionTree<>(storage[1]));
+            if (temp.length() == 1){
+                if (temp.charAt(0) == 'Y'){
+                    initialTree.setLeft(new DecisionTree<>(storage[1],null,null));
+                }
+                else{
+                    initialTree.setRight(new DecisionTree<>(storage[1],null,null));
+                }
+            }
+            else{
+                //
+            }
         }
+        System.err.println(BinaryTree.inorderString(initialTree));
     }
 
     public static void main(String[] args) {

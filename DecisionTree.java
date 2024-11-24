@@ -90,11 +90,21 @@ public class DecisionTree<E> extends BinaryTree<String>{
         while (file.hasNextLine()){
             inputLine.add(file.nextLine());
         }
-        DecisionTree<String> initialTree = new DecisionTree<>(inputLine.get(0));
-        // for(int i = 1; i < inputLine.size(); i++){
-            
+        DecisionTree<String> initialTree = new DecisionTree<>("");
+        initialTree.setData(inputLine.get(0));
+        for(int i = 1; i < inputLine.size(); i++){
+            String[] storage = inputLine.get(i).split(" ");
+            String temp = storage[0];
+        //     //for (int j = 2; j < temp.length(); j++){
+        // if (temp.charAt(1) == 'Y'){
+        //     initialTree.setLeft(new DecisionTree<>(storage[1]));;
         // }
-        System.err.println(inputLine.get(0));
+        // else{
+        //     initialTree.setRight(new DecisionTree<>(storage[1]));
+        // }
+        //     //}
+        //     initialTree.setLeft(new DecisionTree<>(storage[1]));
+        }
     }
 
     public static void main(String[] args) {

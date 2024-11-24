@@ -59,7 +59,22 @@ public class DecisionTree<E> extends BinaryTree<E>{
                 }
             }
             else{
-                //
+                // int cnt = 1;
+                // while(cnt < temp.length()){
+                //     if (temp.charAt(cnt) == 'Y'){
+                //         initialTree = (DecisionTree<String>) initialTree.getLeft();
+                //     }
+                //     else{
+                //         initialTree = (DecisionTree<String>) initialTree.getRight();
+                //     }
+                //     cnt ++;
+                // }
+                // if (temp.charAt(temp.length() - 1) == 'Y'){
+                //     initialTree.setLeft(new DecisionTree<>(storage[1],null,null));
+                // }
+                // else{
+                //     initialTree.setRight(new DecisionTree<>(storage[1],null,null));
+                // }
             }
         }
         System.err.println(BinaryTree.inorderString(initialTree));

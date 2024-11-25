@@ -34,7 +34,7 @@ public class DecisionTree<E> extends BinaryTree<E>{
         return returnNode;
     }
 
-    public static void readFile(String name){
+    public static DecisionTree<String> readFile(String name){
         Scanner file = null;
         try {
           file = new Scanner(new File(name));
@@ -51,6 +51,7 @@ public class DecisionTree<E> extends BinaryTree<E>{
         for(int i = 1; i < inputLine.size(); i++){
             String[] storage = inputLine.get(i).split(" ",2);
             String temp = storage[0];
+            initialTree = pointer;
             for (int j = 0; j < temp.length() - 1; j++){
                 if (temp.charAt(j) == 'Y'){
                     if (initialTree.getLeft() != null){
@@ -70,20 +71,20 @@ public class DecisionTree<E> extends BinaryTree<E>{
                 initialTree.setRight(new DecisionTree<>(storage[1]));
             }
         }
-        System.err.println(BinaryTree.preorderString(pointer));
+        return pointer;
     }
 
-    public static void main(String[] args) {
-        String inputLine = "";
-        if (args.length == 0) {
-            System.err.println("Usage:  java Postfix <expr>");
-        } else {
-            Scanner sc = new Scanner(new StringReader(args[0]));
-            while (sc.hasNext()) {
-                inputLine = sc.next();
-            }
-            sc.close();
-        }
-        DecisionTree.readFile(inputLine);
-    }
+    // public static void main(String[] args) {
+    //     String inputLine = "";
+    //     if (args.length == 0) {
+    //         System.err.println("Usage:  java Postfix <expr>");
+    //     } else {
+    //         Scanner sc = new Scanner(new StringReader(args[0]));
+    //         while (sc.hasNext()) {
+    //             inputLine = sc.next();
+    //         }
+    //         sc.close();
+    //     }
+    //     DecisionTree.readFile(inputLine);
+    // }
 }

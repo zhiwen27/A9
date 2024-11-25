@@ -5,7 +5,7 @@
 ## General Information
 Programming Partner Name (if you'd like to be graded together): No.
 
-Other Collaborators (and kudos to helpful members of the class): Jessica.
+Other Collaborators (and kudos to helpful members of the class): Jessica, Lan.
 
 Any references used besides JavaDoc and course materials: No.
 

@@ -46,38 +46,31 @@ public class DecisionTree<E> extends BinaryTree<E>{
         while (file.hasNextLine()){
             inputLine.add(file.nextLine());
         }
-        DecisionTree<String> initialTree = new DecisionTree<>(inputLine.get(0),null,null);
+        DecisionTree<String> initialTree = new DecisionTree<>(inputLine.get(0));
+        DecisionTree<String> pointer = initialTree;
         for(int i = 1; i < inputLine.size(); i++){
             String[] storage = inputLine.get(i).split(" ",2);
             String temp = storage[0];
-            if (temp.length() == 1){
-                if (temp.charAt(0) == 'Y'){
-                    initialTree.setLeft(new DecisionTree<>(storage[1],null,null));
+            for (int j = 0; j < temp.length() - 1; j++){
+                if (temp.charAt(j) == 'Y'){
+                    if (initialTree.getLeft() != null){
+                        initialTree = (DecisionTree<String>) initialTree.getLeft();
+                    }
                 }
                 else{
-                    initialTree.setRight(new DecisionTree<>(storage[1],null,null));
+                    if (initialTree.getRight() != null){
+                        initialTree = (DecisionTree<String>) initialTree.getRight();
+                    }
                 }
             }
+            if (temp.charAt(temp.length() - 1) == 'Y'){
+                initialTree.setLeft(new DecisionTree<>(storage[1]));
+            }
             else{
-                // int cnt = 1;
-                // while(cnt < temp.length()){
-                //     if (temp.charAt(cnt) == 'Y'){
-                //         initialTree = (DecisionTree<String>) initialTree.getLeft();
-                //     }
-                //     else{
-                //         initialTree = (DecisionTree<String>) initialTree.getRight();
-                //     }
-                //     cnt ++;
-                // }
-                // if (temp.charAt(temp.length() - 1) == 'Y'){
-                //     initialTree.setLeft(new DecisionTree<>(storage[1],null,null));
-                // }
-                // else{
-                //     initialTree.setRight(new DecisionTree<>(storage[1],null,null));
-                // }
+                initialTree.setRight(new DecisionTree<>(storage[1]));
             }
         }
-        System.err.println(BinaryTree.inorderString(initialTree));
+        System.err.println(BinaryTree.preorderString(pointer));
     }
 
     public static void main(String[] args) {

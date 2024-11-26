@@ -58,19 +58,22 @@ public class AnimalGuess{
                     }
                     else if (AnimalGuess.checkNo(input)){
                         System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
-                        input = sc.next().toLowerCase();
+                        input = sc.next();
                         String nodeName = input;
                         System.err.println("Type a yes or no question that would distinguish between a " + nodeName + " and a " + tree.getData() + "?");
                         input = sc.next();
-                        String nodeValue = input;
+                        DecisionTree<String> addNode = new DecisionTree<>(input);
                         System.err.println("Would you answer yes to this question for the " + nodeName + "?");
                         input = sc.next().toLowerCase();
-                        if(AnimalGuess.checkYes(input)){
-
+                        if (AnimalGuess.checkYes(input)){
+                            addNode.setLeft(new DecisionTree<String>(nodeName));
+                            addNode.setRight(new DecisionTree<String>(tree));
                         }
                         else{
-                            
+                            addNode.setLeft(new DecisionTree<String>(tree));
+                            addNode.setRight(new DecisionTree<String>(nodeName));
                         }
+                        tree = addNode;
                     }
                 }
             }
@@ -92,7 +95,22 @@ public class AnimalGuess{
                     }
                     else if (AnimalGuess.checkNo(input)){
                         System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
+                        input = sc.next();
+                        String nodeName = input;
+                        System.err.println("Type a yes or no question that would distinguish between a " + nodeName + " and a " + tree.getData() + "?");
+                        input = sc.next();
+                        DecisionTree<String> addNode = new DecisionTree<>(input);
+                        System.err.println("Would you answer yes to this question for the " + nodeName + "?");
                         input = sc.next().toLowerCase();
+                        if (AnimalGuess.checkYes(input)){
+                            addNode.setLeft(new DecisionTree<String>(nodeName));
+                            addNode.setRight(new DecisionTree<String>(tree));
+                        }
+                        else{
+                            addNode.setLeft(new DecisionTree<String>(tree));
+                            addNode.setRight(new DecisionTree<String>(nodeName));
+                        }
+                        //tree = addNode;
                     }
                 }
             }

@@ -30,7 +30,7 @@ public class AnimalGuess{
         } else {
             Scanner sc = new Scanner(new StringReader(args[0]));
             while (sc.hasNext()) {
-                inputLine = sc.next();
+                inputLine = sc.nextLine();
             }
             sc.close();
         }
@@ -38,33 +38,33 @@ public class AnimalGuess{
         Boolean play = true;
         Scanner sc = new Scanner(System.in);
         System.err.println("Think of an animal.\n" + "I'll try to guess it.\n" + tree.getData().replaceFirst(" ", ""));
-        String input = sc.next().toLowerCase();
+        String input = sc.nextLine().toLowerCase();
         while(play){
             if (AnimalGuess.checkYes(input)) {
                 tree = (DecisionTree<String>) tree.getLeft();
                 if ((tree.isBranch())){
                     System.err.println(tree.getData());
-                    input = sc.next().toLowerCase();
+                    input = sc.nextLine().toLowerCase();
                 }
                 else{
                     System.err.println("Is it a " + tree.getData() + "?");
-                    input = sc.next().toLowerCase();
+                    input = sc.nextLine().toLowerCase();
                     if (AnimalGuess.checkYes(input)){
                         System.err.println("I guessed it!\n" + "Play again?");
-                        input = sc.next().toLowerCase();
+                        input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkNo(input)){
                             play = false;
                         }
                     }
                     else if (AnimalGuess.checkNo(input)){
                         System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
-                        input = sc.next();
+                        input = sc.nextLine();
                         String nodeName = input;
                         System.err.println("Type a yes or no question that would distinguish between a " + nodeName + " and a " + tree.getData() + "?");
-                        input = sc.next();
+                        input = sc.nextLine();
                         DecisionTree<String> addNode = new DecisionTree<>(input);
                         System.err.println("Would you answer yes to this question for the " + nodeName + "?");
-                        input = sc.next().toLowerCase();
+                        input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
                             addNode.setLeft(new DecisionTree<String>(nodeName));
                             addNode.setRight(new DecisionTree<String>(tree));
@@ -73,7 +73,7 @@ public class AnimalGuess{
                             addNode.setLeft(new DecisionTree<String>(tree));
                             addNode.setRight(new DecisionTree<String>(nodeName));
                         }
-                        tree = addNode;
+                        //tree = addNode;
                     }
                 }
             }
@@ -81,27 +81,27 @@ public class AnimalGuess{
                 tree = (DecisionTree<String>) tree.getRight();
                 if ((tree.isBranch())){
                     System.err.println(tree.getData());
-                    input = sc.next().toLowerCase();
+                    input = sc.nextLine().toLowerCase();
                 }
                 else{
                     System.err.println("Is it a " + tree.getData() + "?");
-                    input = sc.next().toLowerCase();
+                    input = sc.nextLine().toLowerCase();
                     if (AnimalGuess.checkYes(input)){
                         System.err.println("I guessed it!\n" + "Play again?");
-                        input = sc.next().toLowerCase();
+                        input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkNo(input)){
                             play = false;
                         }
                     }
                     else if (AnimalGuess.checkNo(input)){
                         System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
-                        input = sc.next();
+                        input = sc.nextLine();
                         String nodeName = input;
                         System.err.println("Type a yes or no question that would distinguish between a " + nodeName + " and a " + tree.getData() + "?");
-                        input = sc.next();
+                        input = sc.nextLine();
                         DecisionTree<String> addNode = new DecisionTree<>(input);
                         System.err.println("Would you answer yes to this question for the " + nodeName + "?");
-                        input = sc.next().toLowerCase();
+                        input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
                             addNode.setLeft(new DecisionTree<String>(nodeName));
                             addNode.setRight(new DecisionTree<String>(tree));

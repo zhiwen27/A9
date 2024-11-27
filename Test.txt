@@ -4,14 +4,18 @@ N Is it a reptile?
 YY Does it give milk?
 YN Is it a carnivore?
 NY Crocodile
-NN Mosquito
+NN Does it have colorful wings?
 YYY Is it an insect?
 YYN Horse
 YNY Is it in the dog family?
 YNN Mouse
+NNY Butterfly
+NNN Mosquito
 YYYY Can it walk?
 YYYN Cow
 YNYY Dog
-YNYN Cat
+YNYN Does it have fur?
 YYYYY raccoon
 YYYYN Bee
+YNYNY Cat
+YNYNN Dolphin

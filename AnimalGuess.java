@@ -51,8 +51,8 @@ public class AnimalGuess{
             return true;
         }
         else{
-            //throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
-            return false;
+            throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+            //return false;
         }
     }
 
@@ -61,8 +61,8 @@ public class AnimalGuess{
             return true;
         }
         else{
-            //throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
-            return false;
+            throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+            //return false;
         }
     }
 

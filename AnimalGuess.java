@@ -10,23 +10,25 @@ import java.util.Scanner;
 public class AnimalGuess{
 
     public static ArrayList<String> breadthFirstTraversal(DecisionTree<String> tree) {
-        ArrayList<String> nodes = new ArrayList<>();
-        Queue<DecisionTree<String>> queue = new LinkedList<>();
+        Queue<DecisionTree<String>> queue = new LinkedList<DecisionTree<String>>();
+        Queue<String> path = new LinkedList<String>();
+        ArrayList<String> nodeValue = new ArrayList<> ();
         queue.add(tree);
-        String s = "";
+        path.offer("");
         while (!queue.isEmpty()) {
-            DecisionTree<String> currentNode = queue.remove();
-            nodes.add(s + " " + currentNode.getData());
-            if (currentNode.getLeft() != null) {
-                s += "Y";
-                queue.add((DecisionTree<String>) currentNode.getLeft());
+            DecisionTree<String> temp = queue.poll();
+            String s = path.poll();
+            nodeValue.add(s + " " + temp.getData());
+            if (temp.getLeft() != null) {
+                queue.add((DecisionTree<String>) temp.getLeft());
+                path.offer(s + "Y");
             }
-            if (currentNode.getRight() != null) {
-                s += "N";
-                queue.add((DecisionTree<String>) currentNode.getRight());
+            if (temp.getRight() != null) {
+                queue.add((DecisionTree<String>) temp.getRight());
+                path.offer(s + "N");
             }
         }
-        return nodes;
+        return nodeValue;
     }
 
     public static void writeFile(DecisionTree<String> tree){

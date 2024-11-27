@@ -8,13 +8,15 @@ NN Does it have colorful wings?
 YYY Is it an insect?
 YYN Horse
 YNY Is it in the dog family?
-YNN Mouse
+YNN Does it have long ears?
 NNY Butterfly
 NNN Mosquito
 YYYY Can it walk?
 YYYN Cow
 YNYY Dog
 YNYN Does it have fur?
+YNNY Rabbit
+YNNN Mouse
 YYYYY raccoon
 YYYYN Bee
 YNYNY Cat

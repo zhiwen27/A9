@@ -21,6 +21,7 @@ public class AnimalGuess{
         ArrayList<String> nodeValue = new ArrayList<> ();
         queue.add(tree);
         path.add("");
+        nodeValue.add(tree.getData());
         while (!queue.isEmpty()) {
             DecisionTree<String> temp = queue.poll();
             String s = path.poll();
@@ -34,6 +35,7 @@ public class AnimalGuess{
                 path.add(s + "N");
             }
         }
+        nodeValue.remove(1);
         return nodeValue;
     }
 

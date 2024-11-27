@@ -2,14 +2,34 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AnimalGuess{
 
+    public static ArrayList<String> breadthFirstTraversal(DecisionTree<String> tree, int level, ArrayList<String> nodes) {
+        if (tree == null)
+            return nodes;
+        if (level == 1){
+            nodes.add(tree.getData());
+            return nodes;
+        }
+        else if (level > 1) {
+            breadthFirstTraversal((DecisionTree<String>)tree.getLeft(), level - 1, nodes);
+            breadthFirstTraversal((DecisionTree<String>)tree.getRight(), level - 1, nodes);
+        }
+        return nodes;
+    }
+
     public static void writeFile(DecisionTree<String> tree){
         try {
             PrintWriter w = new PrintWriter(new FileWriter("Test.txt"));
-            w.print(" " + tree.getData());
+            //w.print(" " + tree.getData());
+            ArrayList<String> nodes = new ArrayList<>();
+            AnimalGuess.breadthFirstTraversal(tree, tree.height(), nodes);
+            for(String s: nodes){
+                System.err.println(s);
+            }
             w.close();
         } catch (IOException e) {
             System.err.println("Cannot locate file.");
@@ -110,7 +130,6 @@ public class AnimalGuess{
                         }
                     }
                     tree = (DecisionTree<String>) tree.getLeft();
-                    // traverse through the tree and write the node value into a new file with path indication
                 }
                 else if ((AnimalGuess.checkNo(input)) && (playIn)){
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getRight();
@@ -166,7 +185,6 @@ public class AnimalGuess{
                     tree = (DecisionTree<String>) tree.getRight();
                 }
             }
-            // traverse through the tree and write the node value into a new file with path indication
         }
         sc.close();
     }

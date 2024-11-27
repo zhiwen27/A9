@@ -14,3 +14,4 @@ https://www.digitalocean.com/community/tutorials/breadth-first-search-depth-firs
 ## Assignment Reflection
 
 Please reflect on your experience with this assignment. What was most challenging? What was most interesting?
+Understanding the concept of DecisionTree and how to play the game and implement the game is very challenging, however, I think the part of re-writing the new tree into the file is pretty interesting.

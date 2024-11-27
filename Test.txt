@@ -1,4 +1,4 @@
-   Is it a mammal?
+ Is it a mammal?
 Y Does it have hooves?
 N Is it a reptile?
 YY Does it give milk?
@@ -9,7 +9,9 @@ YYY Is it an insect?
 YYN Horse
 YNY Is it in the dog family?
 YNN Mouse
-YYYY Bee
+YYYY Can it walk?
 YYYN Cow
 YNYY Dog
 YNYN Cat
+YYYYY raccoon
+YYYYN Bee

@@ -3,20 +3,28 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class AnimalGuess{
 
-    public static ArrayList<String> breadthFirstTraversal(DecisionTree<String> tree, int level, ArrayList<String> nodes) {
-        if (tree == null)
-            return nodes;
-        if (level == 1){
-            nodes.add(tree.getData());
-            return nodes;
-        }
-        else if (level > 1) {
-            breadthFirstTraversal((DecisionTree<String>)tree.getLeft(), level - 1, nodes);
-            breadthFirstTraversal((DecisionTree<String>)tree.getRight(), level - 1, nodes);
+    public static ArrayList<String> breadthFirstTraversal(DecisionTree<String> tree) {
+        ArrayList<String> nodes = new ArrayList<>();
+        Queue<DecisionTree<String>> queue = new LinkedList<>();
+        queue.add(tree);
+        String s = "";
+        while (!queue.isEmpty()) {
+            DecisionTree<String> currentNode = queue.remove();
+            nodes.add(s + " " + currentNode.getData());
+            if (currentNode.getLeft() != null) {
+                s += "Y";
+                queue.add((DecisionTree<String>) currentNode.getLeft());
+            }
+            if (currentNode.getRight() != null) {
+                s += "N";
+                queue.add((DecisionTree<String>) currentNode.getRight());
+            }
         }
         return nodes;
     }
@@ -24,11 +32,10 @@ public class AnimalGuess{
     public static void writeFile(DecisionTree<String> tree){
         try {
             PrintWriter w = new PrintWriter(new FileWriter("Test.txt"));
-            //w.print(" " + tree.getData());
-            ArrayList<String> nodes = new ArrayList<>();
-            AnimalGuess.breadthFirstTraversal(tree, tree.height(), nodes);
+            ArrayList<String> nodes = AnimalGuess.breadthFirstTraversal(tree);
+            w.println(nodes.removeFirst());
             for(String s: nodes){
-                System.err.println(s);
+                w.println(s);
             }
             w.close();
         } catch (IOException e) {
@@ -88,6 +95,7 @@ public class AnimalGuess{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
+                            AnimalGuess.writeFile(pointer);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -141,6 +149,7 @@ public class AnimalGuess{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
+                            AnimalGuess.writeFile(pointer);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){

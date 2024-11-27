@@ -9,6 +9,12 @@ import java.util.Scanner;
 
 public class AnimalGuess{
 
+    /**
+     * Traverse the tree in breath first order, add the path and the value of each node to an arraylist of strings and return the
+     * arraylist (to rewrite the file)
+     * @param tree the tree to be traversed
+     * @return the value (including the path) of every node in the tree
+     */
     public static ArrayList<String> breadthFirstTraversal(DecisionTree<String> tree) {
         Queue<DecisionTree<String>> queue = new LinkedList<DecisionTree<String>>();
         Queue<String> path = new LinkedList<String>();
@@ -31,6 +37,11 @@ public class AnimalGuess{
         return nodeValue;
     }
 
+    /**
+     * Write the tree to the file
+     * @param tree the tree to be written
+     * @param fileName the name of the file to be written in
+     */
     public static void writeFile(DecisionTree<String> tree, String fileName){
         try {
             PrintWriter w = new PrintWriter(new FileWriter(fileName));
@@ -46,6 +57,11 @@ public class AnimalGuess{
         }
     }
 
+    /**
+     * Check if input answer is Yes/ Y (or the lowercase)
+     * @param input input from player
+     * @return if input answer is yes
+     */
     public static boolean checkYes(String input){
         if (input.equals("y") || (input.equals("yes"))){
             return true;
@@ -56,6 +72,11 @@ public class AnimalGuess{
         }
     }
 
+    /**
+     * Check if input answer is No/ N (or the lowercase)
+     * @param input input from player
+     * @return if input answer is no
+     */
     public static boolean checkNo(String input){
         if (input.equals("n") || (input.equals("no"))){
             return true;

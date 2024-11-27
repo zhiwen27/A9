@@ -1,6 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.StringReader;
+// import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,6 +21,12 @@ public class DecisionTree<E> extends BinaryTree<E>{
         super(tree);
     }
 
+    /**
+     * Follow the String input path and find the desired node
+     * @param node tree node (root) as input
+     * @param input the path
+     * @return the node when following the path
+     */
     public static DecisionTree<String> followPath(DecisionTree<String> node, String input){
         DecisionTree<String> returnNode = node;
         for(int i = 0; i < input.length(); i++){
@@ -34,6 +40,11 @@ public class DecisionTree<E> extends BinaryTree<E>{
         return returnNode;
     }
 
+    /**
+     * Read the file and create the initial tree
+     * @param name file name
+     * @return the initial tree
+     */
     public static DecisionTree<String> readFile(String name){
         Scanner file = null;
         try {

@@ -8,8 +8,8 @@ Programming Partner Name (if you'd like to be graded together): No.
 Other Collaborators (and kudos to helpful members of the class): Jessica, Lan.
 
 Any references used besides JavaDoc and course materials:
-https://www.basicsandbeyond.dev/posts/2018/05/non-recursive-breadth-first-traversal-binary-tree/#:~:text=You%20start%20at%20root%20and,all%20the%20levels%20are%20finished.
-https://www.geeksforgeeks.org/level-order-tree-traversal/
+For a breadth first traversal algorithm code:
+https://www.digitalocean.com/community/tutorials/breadth-first-search-depth-first-search-bfs-dfs
 
 ## Assignment Reflection
 

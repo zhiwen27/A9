@@ -14,26 +14,26 @@ public class AnimalGuess{
         Queue<String> path = new LinkedList<String>();
         ArrayList<String> nodeValue = new ArrayList<> ();
         queue.add(tree);
-        path.offer("");
+        path.add("");
         while (!queue.isEmpty()) {
             DecisionTree<String> temp = queue.poll();
             String s = path.poll();
             nodeValue.add(s + " " + temp.getData());
             if (temp.getLeft() != null) {
                 queue.add((DecisionTree<String>) temp.getLeft());
-                path.offer(s + "Y");
+                path.add(s + "Y");
             }
             if (temp.getRight() != null) {
                 queue.add((DecisionTree<String>) temp.getRight());
-                path.offer(s + "N");
+                path.add(s + "N");
             }
         }
         return nodeValue;
     }
 
-    public static void writeFile(DecisionTree<String> tree){
+    public static void writeFile(DecisionTree<String> tree, String fileName){
         try {
-            PrintWriter w = new PrintWriter(new FileWriter("Test.txt"));
+            PrintWriter w = new PrintWriter(new FileWriter(fileName));
             ArrayList<String> nodes = AnimalGuess.breadthFirstTraversal(tree);
             w.println(nodes.removeFirst());
             for(String s: nodes){
@@ -97,7 +97,7 @@ public class AnimalGuess{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
-                            AnimalGuess.writeFile(pointer);
+                            AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -127,7 +127,7 @@ public class AnimalGuess{
                                 addNode.setRight(new DecisionTree<String>(nodeName));
                                 tree.setLeft(addNode);;
                             }
-                            AnimalGuess.writeFile(pointer);
+                            AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -151,7 +151,7 @@ public class AnimalGuess{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
                         if (AnimalGuess.checkYes(input)){
-                            AnimalGuess.writeFile(pointer);
+                            AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -181,7 +181,7 @@ public class AnimalGuess{
                                 addNode.setRight(new DecisionTree<String>(nodeName));
                                 tree.setRight(addNode);;
                             }
-                            AnimalGuess.writeFile(pointer);
+                            AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){

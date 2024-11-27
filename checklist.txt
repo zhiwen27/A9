@@ -19,7 +19,7 @@ __YES___ 2 pts: Plays a game that moves correctly through the tree to a guess
 
 __YES___ 2 pts: Correctly updates tree when user wins the game
 
-_____ 1 pt: User interaction is clear and easy to navigate
+__PART___ 1 pt: User interaction is clear and easy to navigate
 
 __YES___ 1 pt: Implemented method to write tree correctly to file in breadth-first order
 

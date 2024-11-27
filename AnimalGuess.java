@@ -9,7 +9,7 @@ public class AnimalGuess{
     public static void writeFile(DecisionTree<String> tree){
         try {
             PrintWriter w = new PrintWriter(new FileWriter("Test.txt"));
-            w.print("Hello");
+            w.print(" " + tree.getData());
             w.close();
         } catch (IOException e) {
             System.err.println("Cannot locate file.");
@@ -97,7 +97,7 @@ public class AnimalGuess{
                                 addNode.setRight(new DecisionTree<String>(nodeName));
                                 tree.setLeft(addNode);;
                             }
-                            //AnimalGuess.writeFile(pointer);
+                            AnimalGuess.writeFile(pointer);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){

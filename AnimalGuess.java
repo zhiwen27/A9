@@ -1,7 +1,21 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.Scanner;
 
 public class AnimalGuess{
+
+    public static void writeFile(DecisionTree<String> tree){
+        try {
+            PrintWriter w = new PrintWriter(new FileWriter("Test.txt"));
+            w.print("Hello");
+            w.close();
+        } catch (IOException e) {
+            System.err.println("Cannot locate file.");
+            System.exit(-1); 
+        }
+    }
 
     public static boolean checkYes(String input){
         if (input.equals("y") || (input.equals("yes"))){
@@ -46,7 +60,6 @@ public class AnimalGuess{
             while(playIn){
                 if ((AnimalGuess.checkYes(input)) && (playIn)) {
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getLeft();
-                    tree = (DecisionTree<String>) tree.getLeft();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
                         input = sc.nextLine().toLowerCase();
@@ -84,7 +97,7 @@ public class AnimalGuess{
                                 addNode.setRight(new DecisionTree<String>(nodeName));
                                 tree.setLeft(addNode);;
                             }
-                            System.err.println(DecisionTree.preorderString(pointer));
+                            //AnimalGuess.writeFile(pointer);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -96,11 +109,11 @@ public class AnimalGuess{
                             }
                         }
                     }
+                    tree = (DecisionTree<String>) tree.getLeft();
                     // traverse through the tree and write the node value into a new file with path indication
                 }
                 else if ((AnimalGuess.checkNo(input)) && (playIn)){
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getRight();
-                    tree = (DecisionTree<String>) tree.getRight();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
                         input = sc.nextLine().toLowerCase();
@@ -138,7 +151,7 @@ public class AnimalGuess{
                                 addNode.setRight(new DecisionTree<String>(nodeName));
                                 tree.setRight(addNode);;
                             }
-                            System.err.println(DecisionTree.preorderString(pointer));
+                            AnimalGuess.writeFile(pointer);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
                             if (AnimalGuess.checkYes(input)){
@@ -150,6 +163,7 @@ public class AnimalGuess{
                             }
                         }
                     }
+                    tree = (DecisionTree<String>) tree.getRight();
                 }
             }
             // traverse through the tree and write the node value into a new file with path indication

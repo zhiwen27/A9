@@ -6,13 +6,15 @@ YN Is it a carnivore?
 NY Crocodile
 NN Does it have colorful wings?
 YYY Is it an insect?
-YYN Horse
+YYN Can it run?
 YNY Is it in the dog family?
 YNN Does it have long ears?
 NNY Butterfly
 NNN Mosquito
 YYYY Can it walk?
 YYYN Cow
+YYNY Horse
+YYNN Panda
 YNYY Dog
 YNYN Does it have fur?
 YNNY Rabbit

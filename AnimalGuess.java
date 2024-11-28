@@ -64,13 +64,18 @@ public class AnimalGuess{
      * @param input input from player
      * @return if input answer is yes
      */
-    public static boolean checkYes(String input){
-        if (input.equals("y") || (input.equals("yes"))){
-            return true;
-        }
-        else{
-            //throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
-            return false;
+    public static boolean checkYes(String input, Scanner sc){
+        while(true){
+            if (input.equals("y") || (input.equals("yes"))){
+                return true;
+            }
+            else if (input.equals("n") || (input.equals("no"))){
+                return false;
+            }
+            else{
+                System.err.println("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+                input = sc.nextLine().toLowerCase();
+            }
         }
     }
 
@@ -79,13 +84,18 @@ public class AnimalGuess{
      * @param input input from player
      * @return if input answer is no
      */
-    public static boolean checkNo(String input){
-        if (input.equals("n") || (input.equals("no"))){
-            return true;
-        }
-        else{
-            //throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
-            return false;
+    public static boolean checkNo(String input, Scanner sc){
+        while(true){
+            if (input.equals("n") || (input.equals("no"))){
+                return true;
+            }
+            else if (input.equals("y") || (input.equals("yes"))){
+                return false;
+            }
+            else{
+                System.err.println("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+                input = sc.nextLine().toLowerCase();
+            }
         }
     }
 
@@ -110,7 +120,7 @@ public class AnimalGuess{
             String input = sc.nextLine().toLowerCase();
             Boolean playIn = true;
             while(playIn){
-                if ((AnimalGuess.checkYes(input)) && (playIn)) {
+                if ((AnimalGuess.checkYes(input,sc)) && (playIn)) {
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getLeft();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
@@ -119,11 +129,11 @@ public class AnimalGuess{
                     else{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
-                        if (AnimalGuess.checkYes(input)){
+                        if (AnimalGuess.checkYes(input,sc)){
                             AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 break;
                             }
                             else{
@@ -131,7 +141,7 @@ public class AnimalGuess{
                                 playOut = false;
                             }
                         }
-                        else if (AnimalGuess.checkNo(input)){
+                        else if (AnimalGuess.checkNo(input,sc)){
                             System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
                             input = sc.nextLine();
                             String nodeName = input;
@@ -140,7 +150,7 @@ public class AnimalGuess{
                             DecisionTree<String> addNode = new DecisionTree<>(input);
                             System.err.println("Would you answer yes to this question for the " + nodeName + "?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 addNode.setLeft(new DecisionTree<String>(nodeName));
                                 addNode.setRight(new DecisionTree<String>(treeTemp));
                                 tree.setLeft(addNode);;
@@ -153,7 +163,7 @@ public class AnimalGuess{
                             AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 break;
                             }
                             else{
@@ -164,7 +174,7 @@ public class AnimalGuess{
                     }
                     tree = (DecisionTree<String>) tree.getLeft();
                 }
-                else if ((AnimalGuess.checkNo(input)) && (playIn)){
+                else if ((AnimalGuess.checkNo(input,sc)) && (playIn)){
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getRight();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
@@ -173,11 +183,11 @@ public class AnimalGuess{
                     else{
                         System.err.println("Is it a " + treeTemp.getData() + "?");
                         input = sc.nextLine().toLowerCase();
-                        if (AnimalGuess.checkYes(input)){
+                        if (AnimalGuess.checkYes(input,sc)){
                             AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("I guessed it!\n" + "Play again?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 break;
                             }
                             else{
@@ -185,7 +195,7 @@ public class AnimalGuess{
                                 playOut = false;
                             }
                         }
-                        else if (AnimalGuess.checkNo(input)){
+                        else if (AnimalGuess.checkNo(input,sc)){
                             System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
                             input = sc.nextLine();
                             String nodeName = input;
@@ -194,7 +204,7 @@ public class AnimalGuess{
                             DecisionTree<String> addNode = new DecisionTree<>(input);
                             System.err.println("Would you answer yes to this question for the " + nodeName + "?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 addNode.setLeft(new DecisionTree<String>(nodeName));
                                 addNode.setRight(new DecisionTree<String>(treeTemp));
                                 tree.setRight(addNode);;
@@ -207,7 +217,7 @@ public class AnimalGuess{
                             AnimalGuess.writeFile(pointer, inputLine);
                             System.err.println("Play again?");
                             input = sc.nextLine().toLowerCase();
-                            if (AnimalGuess.checkYes(input)){
+                            if (AnimalGuess.checkYes(input,sc)){
                                 break;
                             }
                             else{

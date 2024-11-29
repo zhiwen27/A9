@@ -60,40 +60,24 @@ public class AnimalGuess{
     }
 
     /**
-     * Check if input answer is Yes/ Y (or the lowercase)
+     * Check if input answer is Yes/ Y (or the lowercase) or No/ N (or the lowercase)
      * @param input input from player
-     * @return if input answer is yes
+     * @return if input answer is yes or no
      */
     public static boolean checkYes(String input, Scanner sc){
         while(true){
-            if (input.equals("y") || (input.equals("yes"))){
-                return true;
-            }
-            else if (input.equals("n") || (input.equals("no"))){
-                return false;
-            }
-            else{
-                System.err.println("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
-                input = sc.nextLine().toLowerCase();
-            }
-        }
-    }
-
-    /**
-     * Check if input answer is No/ N (or the lowercase)
-     * @param input input from player
-     * @return if input answer is no
-     */
-    public static boolean checkNo(String input, Scanner sc){
-        while(true){
-            if (input.equals("n") || (input.equals("no"))){
-                return true;
-            }
-            else if (input.equals("y") || (input.equals("yes"))){
-                return false;
-            }
-            else{
-                System.err.println("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+            try{
+                if (input.equals("y") || (input.equals("yes"))){
+                    return true;
+                }
+                else if (input.equals("n") || (input.equals("no"))){
+                    return false;
+                }
+                else{
+                    throw new RuntimeException("Thank you so much for your response! However, you should enter either Yes/ Y for a positive answer, or No/ N for a negative answer!");
+                }
+            } catch (Exception e){
+                System.err.println(e.getMessage());
                 input = sc.nextLine().toLowerCase();
             }
         }
@@ -120,7 +104,7 @@ public class AnimalGuess{
             String input = sc.nextLine().toLowerCase();
             Boolean playIn = true;
             while(playIn){
-                if ((AnimalGuess.checkYes(input,sc)) && (playIn)) {
+                if ((AnimalGuess.checkYes(input,sc))) {
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getLeft();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
@@ -141,7 +125,7 @@ public class AnimalGuess{
                                 playOut = false;
                             }
                         }
-                        else if (AnimalGuess.checkNo(input,sc)){
+                        else{
                             System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
                             input = sc.nextLine();
                             String nodeName = input;
@@ -174,7 +158,7 @@ public class AnimalGuess{
                     }
                     tree = (DecisionTree<String>) tree.getLeft();
                 }
-                else if ((AnimalGuess.checkNo(input,sc)) && (playIn)){
+                else {
                     DecisionTree<String> treeTemp = (DecisionTree<String>) tree.getRight();
                     if ((treeTemp.isBranch())){
                         System.err.println(treeTemp.getData());
@@ -195,7 +179,7 @@ public class AnimalGuess{
                                 playOut = false;
                             }
                         }
-                        else if (AnimalGuess.checkNo(input,sc)){
+                        else if (!AnimalGuess.checkYes(input,sc)){
                             System.err.println("I got it wrong.\n" + "Please help me to learn.\n" + "What was your animal?");
                             input = sc.nextLine();
                             String nodeName = input;

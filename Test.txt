@@ -10,7 +10,7 @@ YYN Can it run?
 YNY Is it in the dog family?
 YNN Does it have long ears?
 NNY Butterfly
-NNN Mosquito
+NNN Does it have wings?
 YYYY Can it walk?
 YYYN Cow
 YYNY Horse
@@ -19,6 +19,8 @@ YNYY Dog
 YNYN Does it have fur?
 YNNY Rabbit
 YNNN Mouse
+NNNY Mosquito
+NNNN Ant
 YYYYY raccoon
 YYYYN Bee
 YNYNY Cat
